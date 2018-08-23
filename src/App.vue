@@ -2,16 +2,19 @@
   <div id="app">
     <img src="./assets/logo.png">
     <HelloWorld/>
+    <LeftBar/>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld'
+import LeftBar from './components/LeftBar'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+    LeftBar
   }
 }
 </script>
