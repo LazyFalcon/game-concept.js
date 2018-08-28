@@ -1,11 +1,14 @@
 <template>
-  <div class='hello'>
-    <button
-      v-for='tab in tabs'
-      v-bind:key='tab'
-      v-bind:class="['tab-button', { active: selectedTab === tab }]"
-      v-on:click='selectedTab = tab'
-      >{{ tab }}</button>
+  <div class='sidebar'>
+    <div class='panelSelection'>
+      <button
+        v-for='tab in tabs'
+        v-bind:key='tab'
+        v-bind:class="['tab-button', { active: selectedTab === tab }]"
+        v-on:click='selectedTab = tab'
+        class='button'
+        >{{ tab }}</button>
+    </div>
 
     <component
       v-bind:is="currentTabComponent"
@@ -29,7 +32,7 @@ export default {
   },
   data () {
     return {
-      selectedTab: 'Resources',
+      selectedTab: 'Construction',
       tabs: ['Resources', 'Tech', 'Construction'],
       msg: 'Wanna build something?'
     }
@@ -44,18 +47,38 @@ export default {
 
 <!-- Add 'scoped' attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
+.sidebar, .content{
+  background: #333;
+  color: #fff;
+  height: 500px;
+  border-radius: 4px;
+  border:1px solid #777;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+.panelSelection {
+  border-bottom: 1px solid white;
+  display: flex; /* or inline-flex */
+  flex-wrap: nowrap;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+.sidebar{
+  width: 400px;
+  left:0;
+  top:0;
+  height: 100%;
+  position: absolute;
 }
-a {
-  color: #42b983;
+
+.button {
+  font-size: 20px;
+  background-color:transparent;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border: 0px;
+  flex: 1 1;
 }
+
+.button:hover {
+  color: white;
+}
+
 </style>

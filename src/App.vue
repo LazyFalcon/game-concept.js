@@ -1,27 +1,29 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
+    <TopBar/>
+    <MainView/>
     <LeftBar/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import MainView from './components/MainView'
 import LeftBar from './components/LeftBar'
+import TopBar from './components/TopBar'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
-    LeftBar
+    MainView,
+    LeftBar,
+    TopBar
   }
 }
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
