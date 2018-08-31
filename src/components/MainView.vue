@@ -2,9 +2,11 @@
   <div class='mainView'>
     <div v-for='(item, index) in planets' v-bind:key='index' class='planetList'>
         <button v-on:click="select(item.name)" class='planetAttributes button'>{{ item.name }}</button>:
-        <div v-for='(att, index2) in item.attachments' v-bind:key='index2' class='planetAttributes'>
+        traits:
+        <div v-for='(att, index2) in item.traits' v-bind:key='index2' class='planetAttributes'>
           {{ att }}
         </div>
+        buildings:
         <div v-for='(att, index2) in item.buildings' v-bind:key='index2' class='planetAttributes'>
           {{ att }}
         </div>
@@ -31,7 +33,7 @@ export default {
 
       this.$store.commit({
         type: 'selectObject',
-        object: this.selectedPlanet
+        selected: this.planets[this.selectedPlanet]
       })
     }
   }

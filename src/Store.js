@@ -5,14 +5,22 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    selectedPlanet: undefined
+    /*
+    * stores currently selected object of any type, type specific behaviors should be provided by traits and template selection
+    * common props:
+    *   name
+    *   type
+     */
+    selected: undefined
   },
   mutations: {
     selectObject (state, payload) {
-      state.selectedPlanet = payload.object
+      console.log('selected: ', payload)
+      if (payload.selected === this.selected) this.state.selected = undefined
+      else this.state.selected = payload.selected
     },
     unselect (state) {
-      state.selectedPlanet = undefined
+      this.state.selected = undefined
     }
   }
 })

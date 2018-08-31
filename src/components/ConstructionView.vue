@@ -1,9 +1,16 @@
 <template>
   <div class="hello">
     <h3>Constructions</h3>
-    <template v-if='planetName'>
-    <h3>{{ msg }} {{planetName}}?</h3>
+    <template v-if='getPlanet'>
+      <h3>{{ msg }} {{getPlanet.name}}?</h3>
+      <div>
+        <button v-for='(thing, index) in getPlanet.availbleBuildings'
+          v-bind:key='index'
+          v-on:click="getPlanet.addBuilding(thing)">{{ thing }}</button>
+
+      </div>
     </template>
+
     <template v-else><h3>Please select planet</h3></template>
   </div>
 </template>
@@ -18,8 +25,8 @@ export default {
     }
   },
   computed: {
-    planetName: function () {
-      return this.$store.state.selectedPlanet
+    getPlanet: function () {
+      return this.$store.state.selected
     }
   }
 }

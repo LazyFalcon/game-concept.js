@@ -4,12 +4,13 @@ var nextId = function () {
   return ids
 }
 
-let constructions = new Map([
+var constructions = new Map([
   ['Factory', {
     name: 'Factory',
     id: nextId(),
     level: 1,
-    perks: ['AllowBuilding']
+    perks: ['AllowBuilding'],
+    adds: ['Shipyard']
   }],
   ['Shipyard', {
     name: 'Shipyard',
@@ -17,13 +18,19 @@ let constructions = new Map([
     level: 1,
     perks: ['AllowBuildingShips']
   }],
+  ['Government', {
+    name: 'Government',
+    id: nextId(),
+    level: 1,
+    perks: ['AllowBuilding'],
+    adds: ['Habitat', 'Factory']
+  }],
   ['Habitat', {
     name: 'Habitat',
     id: nextId(),
     level: 1,
     perks: ['IncreasePopulationCapability']
   }]
-
 ])
 
 export default constructions
