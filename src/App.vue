@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import MainView from './components/MainView'
-import LeftBar from './components/LeftBar'
-import TopBar from './components/TopBar'
+import MainView from './View/MainView'
+import LeftBar from './View/LeftBar'
+import TopBar from './View/TopBar'
 
 export default {
   name: 'App',

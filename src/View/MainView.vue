@@ -16,7 +16,7 @@
 
 <script>
 
-import game from '../Game.js'
+import game from '../Game/Game.js'
 
 export default {
   name: 'MainView',

@@ -1,4 +1,4 @@
-import constructions from './Constructions'
+import constructions from './Structures.'
 
 export class Planet {
   constructor (name, {traits = [], buildings = []}) {
@@ -17,6 +17,10 @@ export class Planet {
       let idx = this.availbleBuildings.indexOf(it)
       if (idx > -1) this.availbleBuildings.splice(idx, 1)
     }
+  }
+
+  hasBuilding (name) {
+    return this.buildings.indexOf(name) > -1
   }
 
   addBuilding (buildingName) {
