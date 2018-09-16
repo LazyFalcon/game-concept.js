@@ -11,7 +11,8 @@ export default new Vuex.Store({
     *   name
     *   type
      */
-    selected: undefined
+    selected: undefined,
+    visibleObjects: []
   },
   mutations: {
     selectObject (state, payload) {
@@ -21,6 +22,9 @@ export default new Vuex.Store({
     },
     unselect (state) {
       this.state.selected = undefined
+    },
+    updateListOfVisibleObjects (state, payload) {
+      this.state.visibleObjects = payload.newList
     }
   }
 })

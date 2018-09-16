@@ -18,6 +18,9 @@
 </template>
 
 <script>
+/*
+* Tu są wszystkie działania pogrupowane
+*/
 
 import ConstructionView from './ConstructionView'
 import ResourcesView from './ResourcesView'

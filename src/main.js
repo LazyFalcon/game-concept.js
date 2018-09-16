@@ -2,6 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
+import * as Game from './Game/Game.js'
 import store from './Store'
 
 Vue.config.productionTip = false
@@ -13,3 +14,6 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+let game = new Game.Game(store)
+game.update(100)

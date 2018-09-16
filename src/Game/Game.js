@@ -1,65 +1,28 @@
-import constructions from './Structures.'
-
-export class Planet {
-  constructor (name, {traits = [], buildings = []}) {
-    this.name = name
-    this.type = 'PLANET'
-    this.traits = traits
-    this.buildings = buildings
-    this.availbleBuildings = []
-    if (buildings.indexOf('Government') < 0) this.availbleBuildings.push('Government')
-
-    for (let it of buildings) {
-      console.log(it, constructions.get(it))
-      this.addAvilableFrom(constructions.get(it))
-    }
-    for (let it of buildings) {
-      let idx = this.availbleBuildings.indexOf(it)
-      if (idx > -1) this.availbleBuildings.splice(idx, 1)
-    }
-  }
-
-  hasBuilding (name) {
-    return this.buildings.indexOf(name) > -1
-  }
-
-  addBuilding (buildingName) {
-    var building = constructions.get(buildingName)
-    let idx = this.availbleBuildings.indexOf(buildingName)
-    if (idx < 0 || building === undefined) {
-      console.log('Building not exists in availble: ', building)
-      return
-    }
-    console.log(',,', building)
-
-    this.availbleBuildings.splice(idx, 1)
-    this.buildings.push(building.name)
-    this.addAvilableFrom(building)
-  }
-
-  // * preserves uniqueness
-  addAvilableFrom (building) {
-    if (building && 'adds' in building) { // ! why this was necessary?
-      for (let thing of building.adds) { // for-of
-        if (this.availbleBuildings.indexOf(building.name) < 0) {
-          this.availbleBuildings.push(thing)
-          console.log('>>', thing)
-        }
-      }
-    }
-  }
-}
-
+import * as StarSystem from './StarSystem.js'
+import * as SystemObject from './SystemObject.js'
+import * as Structures from './Structures.js'
+/*
+* VueStore for communication with UI: mainly setting calbacks and data to render(so UI don't have to read directly from game)
+*/
 export class Game {
-  constructor (name) {
-    let planets = [new Planet('Alfa', {traits: ['Hot']}), new Planet('Beta', {traits: ['Toxic']}), new Planet('Home', {buildings: ['Government', 'Habitat']})]
-    this.planets = {}
-    for (let it of planets) {
-      this.planets[it.name] = it
-    }
+  constructor (vueStore) {
+    this.system = new StarSystem.StarSystem()
+    this.system.addObject('Alfa', new SystemObject.SystemObject('Alfa'))
+    this.system.addObject('Beta', new SystemObject.SystemObject('Beta'))
+    this.system.addObject('Homeworld', new SystemObject.SystemObject('Homeworld'))
+
+    let homeworld = this.system.systemObjects.get('Homeworld')
+    homeworld.structures.addToReady(Structures.defined.get('Habitat'))
+
+    this.listOfVisiblePlanets = Array.from(this.system.systemObjects.entries())
+
+    vueStore.commit({
+      type: 'updateListOfVisibleObjects',
+      newList: this.listOfVisiblePlanets
+    })
+  }
+
+  update (days) {
+    console.log(days)
   }
 }
-
-var game = new Game('a')
-
-export default game

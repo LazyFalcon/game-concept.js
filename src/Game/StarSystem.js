@@ -17,4 +17,8 @@ export class StarSystem {
     }
     this.averageQuality = quality / this.systemObjects.size
   }
+
+  addObject (name, thing) {
+    this.systemObjects.set(name, thing)
+  }
 }

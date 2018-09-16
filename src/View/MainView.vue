@@ -1,28 +1,36 @@
 <template>
   <div class='mainView'>
-    <div v-for='(item, index) in planets' v-bind:key='index' class='planetList'>
-        <button v-on:click="select(item.name)" class='planetAttributes button'>{{ item.name }}</button>:
+    <div v-for='(item, index) in visibleObjects' v-bind:key='index' class='planetList'>
+        <button v-on:click="select(item)" class='planetAttributes button'>{{ item.name }}</button>:
         traits:
-        <div v-for='(att, index2) in item.traits' v-bind:key='index2' class='planetAttributes'>
-          {{ att }}
-        </div>
-        buildings:
-        <div v-for='(att, index2) in item.buildings' v-bind:key='index2' class='planetAttributes'>
-          {{ att }}
-        </div>
+        <!-- <div v-for='(structure, index2) in item.structures.build' v-bind:key='index2' class='planetAttributes'>
+          {{ structure.name }}
+        </div> -->
     </div>
   </div>
 </template>
 
 <script>
+/*
+? Co tu jest wyświtlane?
+* Lista widocznych planet: ich nazwy, obraz, satelity(naturalne i sztuczne(ale zgrupowane)), widoczne space obiekty
+* Jakieś tło
+* Orbity planet
 
-import game from '../Game/Game.js'
+? Co tu się może dziać?
+* Klikanie na planetę/obiekt w zależności od stanu
+* Głównie to wybranie planety, całość akcji odbywa się na panelu bocznym
+* Pokazywanie celów -> tu ustawiony jest callback, jak callbacka nie ma to leci defaultowy wybór planety
+
+* Callbacki na lewy i prawy przycisk myszy
+* Lewy: callbck na akcje ze stanu(ruch, atak, budowa itepe.) by default wybór obiektu
+* Prawy: bardziej kontekstowe zachowania: dodatkowe akcje, skrócone info cokolwiek
+*/
 
 export default {
   name: 'MainView',
   data () {
     return {
-      planets: game.planets,
       selectedPlanet: undefined
     }
   },
@@ -33,8 +41,13 @@ export default {
 
       this.$store.commit({
         type: 'selectObject',
-        selected: this.planets[this.selectedPlanet]
+        selected: this.selectedPlanet
       })
+    }
+  },
+  computed: {
+    visibleObjects: function () {
+      return this.$store.visibleObjects
     }
   }
 }
