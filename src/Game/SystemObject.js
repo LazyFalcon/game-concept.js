@@ -67,9 +67,8 @@ class Structure {
 
 export class SystemObject {
   constructor (name) {
-    console.log('new object:', name)
-    this.name = name
     this.population = new Population()
+    this.name = name
     this.resources = new Resources()
     this.production = new Production()
     this.quality = new Quality()

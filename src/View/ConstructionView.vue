@@ -1,6 +1,5 @@
 <template>
   <div class="hello">
-    <h3>Constructions</h3>
     <template v-if='getPlanet'>
       <h3>{{ msg }} {{getPlanet.name}}?</h3>
       <div>
@@ -16,7 +15,17 @@
 </template>
 
 <script>
+/*
+* Menu budowania i stuktur
+* Żeby coś zbudować potrzebny jest obiekt z fabryką produkującą odpowiednie rzeczy
+* Fabryka na planecie, stocznia orbitalna(przypięta do planety jako struktura), swobodnie latająca stocznia
 
+* Oprócz listy struktur które można wybudować na planecie, listujemy tu istniejące struktury.
+* Struktury można rozwijać(poziom rozprzestrzenia, poziom zaawansowania, nowe perki)
+* Można używać ich akcji specjalnych(lista callbacków z opisem i warunkiem istnienia)
+* Menu budowania lub technologii
+
+*/
 export default {
   name: 'ConstructionView',
   data () {

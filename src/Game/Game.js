@@ -14,7 +14,7 @@ export class Game {
     let homeworld = this.system.systemObjects.get('Homeworld')
     homeworld.structures.addToReady(Structures.defined.get('Habitat'))
 
-    this.listOfVisiblePlanets = Array.from(this.system.systemObjects.entries())
+    this.listOfVisiblePlanets = Array.from(this.system.systemObjects.values())
 
     vueStore.commit({
       type: 'updateListOfVisibleObjects',

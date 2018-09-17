@@ -1,11 +1,8 @@
 <template>
   <div class='mainView'>
+    What is visible on screen?
     <div v-for='(item, index) in visibleObjects' v-bind:key='index' class='planetList'>
-        <button v-on:click="select(item)" class='planetAttributes button'>{{ item.name }}</button>:
-        traits:
-        <!-- <div v-for='(structure, index2) in item.structures.build' v-bind:key='index2' class='planetAttributes'>
-          {{ structure.name }}
-        </div> -->
+        <button v-on:click="select(item)" class='planetAttributes button'>{{ item.name }}</button>
     </div>
   </div>
 </template>
@@ -47,7 +44,7 @@ export default {
   },
   computed: {
     visibleObjects: function () {
-      return this.$store.visibleObjects
+      return this.$store.state.visibleObjects
     }
   }
 }
@@ -63,28 +60,29 @@ export default {
 
 .planetList {
   display: block;
-  background-color: rgb(116, 116, 116);
-  color: white;
+  /* background-color: rgb(116, 116, 116); */
+  /* color: white; */
 }
 
 .planetAttributes {
   display: inline-block;
   margin: 5px;
+  font-family: 'Segoe UI';
 }
 
 .button {
   font-family: 'Segoe UI';
   font-size: 20px;
   background-color:transparent;
-  color: white;
+  /* color: white; */
   text-align: center;
   text-decoration: none;
   border: 2px solid rgb(233, 233, 233);
 }
 
 .button:hover {
-  background-color: rgb(141, 141, 141);
-  color: white;
+  /* background-color: rgb(141, 141, 141); */
+  /* color: white; */
 }
 
 </style>
